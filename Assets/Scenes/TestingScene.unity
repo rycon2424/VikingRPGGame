@@ -5700,11 +5700,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1535109309, guid: 2ebe08abd26609a4597c4704d7cbfec3, type: 3}
-      propertyPath: teamData.colliderList.Array.data[2]
-      value: 
-      objectReference: {fileID: 3465047496814298042, guid: 2ebe08abd26609a4597c4704d7cbfec3,
-        type: 3}
     - target: {fileID: 7119197096148276357, guid: 2ebe08abd26609a4597c4704d7cbfec3,
         type: 3}
       propertyPath: m_Name
