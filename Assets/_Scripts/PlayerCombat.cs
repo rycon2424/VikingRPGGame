@@ -8,7 +8,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void CombatUpdate(PlayerBehaviour pb)
     {
-        if (attacking == false)
+        if (attacking == false && pb.armed == true)
         {
             if (Input.GetMouseButtonDown(0))
             {

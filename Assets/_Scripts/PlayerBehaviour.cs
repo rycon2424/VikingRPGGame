@@ -216,6 +216,7 @@ public class PlayerBehaviour : Actor
             {
                 w.SetActive(true);
             }
+            StartCoroutine(LerpAnimationsFloat("CombatAnim", 0.5f, 1, 0));
             armed = false;
         }
         else
@@ -228,23 +229,40 @@ public class PlayerBehaviour : Actor
             {
                 w.SetActive(false);
             }
+            StartCoroutine(LerpAnimationsFloat("CombatAnim", 0.5f, 0, 1));
             armed = true;
         }
-        StartCoroutine(LerpEquipLayer(1));
+        StartCoroutine(LerpEquipLayer(0.8f, 1, 0));
     }
 
-    IEnumerator LerpEquipLayer(int lerpTime)
+    IEnumerator LerpEquipLayer(float lerpTime, float beginFloat, float to)
     {
         float timeElapsed = 0;
-        float beginFloat = 1;
+        float begin = beginFloat;
         while (timeElapsed < lerpTime)
         {
-            beginFloat = Mathf.Lerp(beginFloat, 0, timeElapsed / 0.25f);
-            anim.SetLayerWeight(1, beginFloat);
+            begin = Mathf.Lerp(beginFloat, to, timeElapsed / lerpTime);
+            anim.SetLayerWeight(1, begin);
+            timeElapsed += Time.deltaTime;
+            Debug.Log(begin);
+            yield return new WaitForEndOfFrame();
+        }
+        anim.SetLayerWeight(1, to);
+        equipAnimating = false;
+    }
+
+    IEnumerator LerpAnimationsFloat(string floatName, float lerpTime, float from, float to)
+    {
+        float timeElapsed = 0;
+        float begin = from;
+        while (timeElapsed < lerpTime)
+        {
+            begin = Mathf.Lerp(from, to, timeElapsed / lerpTime);
+            anim.SetFloat(floatName, begin);
             timeElapsed += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        equipAnimating = false;
+        anim.SetFloat(floatName, to);
     }
 
     public bool LedgeInfo()
