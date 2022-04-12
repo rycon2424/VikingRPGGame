@@ -10,6 +10,7 @@ TagManager:
   - Synty Tree
   - Synty Medium Farm
   - Synty Small Farm
+  - Terrain
   layers:
   - Default
   - TransparentFX

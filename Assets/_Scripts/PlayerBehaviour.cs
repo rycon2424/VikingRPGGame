@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class PlayerBehaviour : Actor
 {
     State currentState;
-    public string currentStateDebug;
+    [ReadOnly] [SerializeField] string currentStateDebug;
 
     [Header("RaycastInfo")]
     public LayerMask everything;
