@@ -129,7 +129,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _NoiseSize: 175
-    - _NormalStrength: 1
+    - _NormalStrength: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -138,7 +138,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SnowAmount: 0.61
-    - _SnowBlend: 0.098
+    - _SnowBlend: 0.462
     - _SnowColorNoiseSize: 500
     - _SnowColorNoiseStrength: 0.5
     - _SnowStrength: 0.678

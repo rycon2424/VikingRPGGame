@@ -33,20 +33,30 @@ public class FootSound : MonoBehaviour
 
     void PlayRandomFootStep()
     {
-        int i = 0;
-        for (i = 0; i < textureValues.Length; i++)
+        int highesti = 0;
+        float highestSize = 0;
+        for (int i = 0; i < textureValues.Length; i++)
         {
-            if (textureValues[i] == 1)
+            if (highesti == 0 && textureValues[i] > 0)
             {
-                break;
+                highestSize = textureValues[i];
+                highesti = i;
+            }
+            else if (textureValues[i] > highestSize)
+            {
+                highestSize = textureValues[i];
+                highesti = i;
             }
         }
         foreach (SoundVariant sound in sounds.soundAssets)
         {
-            if (sound.terrainTextureOrder == i)
+            foreach (var order in sound.terrainTextureOrder)
             {
-                sound.Play(footPlayer);
-                break;
+                if (order == highesti)
+                {
+                    sound.Play(footPlayer);
+                    return;
+                }
             }
         }
     }

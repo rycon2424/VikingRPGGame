@@ -245,7 +245,6 @@ public class PlayerBehaviour : Actor
             begin = Mathf.Lerp(beginFloat, to, timeElapsed / lerpTime);
             anim.SetLayerWeight(1, begin);
             timeElapsed += Time.deltaTime;
-            Debug.Log(begin);
             yield return new WaitForEndOfFrame();
         }
         anim.SetLayerWeight(1, to);

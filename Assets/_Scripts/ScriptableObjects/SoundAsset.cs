@@ -11,7 +11,7 @@ public class SoundAsset : ScriptableObject
 [System.Serializable]
 public class SoundVariant
 {
-    public int terrainTextureOrder;
+    public int[] terrainTextureOrder;
     public string tag;
     [Range(0, 1)] public float maxVolume = 1;
     [Range(0, 1)] public float minVolume = 0.3f;
