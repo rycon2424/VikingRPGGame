@@ -111,8 +111,15 @@ public class Locomotion : State
         //Jump
         if (Input.GetKeyDown(pb.pc.jump))
         {
-            pb.anim.SetTrigger("Jump");
-            pb.stateMachine.GoToState(pb, "InAir");
+            if (pb.anim.GetFloat("CombatAnim") == 0)
+            {
+                pb.anim.SetTrigger("Jump");
+                pb.stateMachine.GoToState(pb, "InAir");
+            }
+            else
+            {
+                pb.anim.SetTrigger("roll");
+            }
         }
     }
 }
