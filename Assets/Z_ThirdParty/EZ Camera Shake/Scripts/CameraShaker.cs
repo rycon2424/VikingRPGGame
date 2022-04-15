@@ -45,7 +45,7 @@ namespace EZCameraShake
         {
             CameraShaker.Instance.ShakeOnce(5, 5, 1, 1);
         }
-        
+
         void Update()
         {
             posAddShake = Vector3.zero;
