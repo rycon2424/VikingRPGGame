@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081305513}
   m_LocalRotation: {x: -0, y: -0.647188, z: -0, w: 0.7623304}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.015, z: 0}
   m_LocalScale: {x: 0.009654887, y: 0.00965489, z: 0.009654887}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -163,6 +163,7 @@ MonoBehaviour:
   attackDistance: 2
   lookDistance: 8.4
   hearDistance: 2
+  deadAnimations: 3
   viewAngle: 70
   stunTime: 0
   minThinkTime: 1

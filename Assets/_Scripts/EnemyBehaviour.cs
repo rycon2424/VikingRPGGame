@@ -11,6 +11,8 @@ public class EnemyBehaviour : EnemyPawn
     public float lookDistance = 5;
     public float hearDistance = 2;
     [Space]
+    public int deadAnimations = 1;
+    [Space]
     [Range(0, 180)] public int viewAngle = 70;
     [Range(0, 1)] public float stunTime;
     [Range(0, 2)] public float minThinkTime;
@@ -112,7 +114,7 @@ public class EnemyBehaviour : EnemyPawn
 
         anim.SetBool("Dead", true);
 
-        anim.SetInteger("RollType", 1);
+        anim.SetInteger("RollType", Random.Range(1, deadAnimations + 1));
         anim.SetTrigger("Death");
 
         StopCoroutine("WalkDirection");
