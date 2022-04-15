@@ -5,8 +5,10 @@ using UnityEngine;
 public class Actor : MonoBehaviour
 {
     [Header("Actor Stats")]
-    public int health = 100;
+    public float health = 100;
+    public float stamina = 100;
     public bool dead = false;
+    public bool invincible = false;
     public int damage = 20;
     [Space]
     public ParticleSystem blood;
@@ -15,7 +17,7 @@ public class Actor : MonoBehaviour
 
     public virtual void TakeDamage(int damage)
     {
-        if (dead == true)
+        if (dead == true || invincible == true)
         {
             return;
         }

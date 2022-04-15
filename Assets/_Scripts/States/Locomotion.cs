@@ -118,7 +118,18 @@ public class Locomotion : State
             }
             else
             {
-                pb.anim.SetTrigger("roll");
+                if (pb.stamina > pb.combat.rollStaminaCost)
+                {
+                    pb.stamina -= pb.combat.rollStaminaCost;
+
+                    if (pb.stamina < 0)
+                        pb.stamina = 0;
+
+                    pb.playerUI.UpdateStaminaBar();
+                    pb.playerUI.ResetGain();
+
+                    pb.anim.SetTrigger("roll");
+                }
             }
         }
     }

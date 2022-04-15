@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  stamina: 100
   dead: 0
   damage: 20
   blood: {fileID: 4401660665832579858}
@@ -165,7 +166,7 @@ MonoBehaviour:
   hearDistance: 2
   deadAnimations: 3
   viewAngle: 70
-  stunTime: 0
+  stunTime: 1
   minThinkTime: 1
   maxThinkTime: 2
   chaseTime: 0
