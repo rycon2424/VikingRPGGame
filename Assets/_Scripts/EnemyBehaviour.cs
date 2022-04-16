@@ -38,7 +38,7 @@ public class EnemyBehaviour : EnemyPawn
 
     [Header("Private/Dont Assign")]
     [ShowIf("showPrivate")] [SerializeField] [ReadOnly] int notWalkedStraight;
-    [ShowIf("showPrivate")] [SerializeField] [ReadOnly] Transform player;
+    [ShowIf("showPrivate")] [ReadOnly]                  public Transform player;
     [ShowIf("showPrivate")] [SerializeField] [ReadOnly] bool targetOfPlayer;
     [ShowIf("showPrivate")] [SerializeField] [ReadOnly] bool attackCooldown;
     [ShowIf("showPrivate")] [SerializeField] [ReadOnly] bool lostPlayer;
@@ -192,7 +192,7 @@ public class EnemyBehaviour : EnemyPawn
         }
     }
 
-    bool PlayerInSight()
+    public bool PlayerInSight()
     {
         float angel = Vector3.Angle(transform.forward, player.position - transform.position);
         if (angel <= viewAngle)
