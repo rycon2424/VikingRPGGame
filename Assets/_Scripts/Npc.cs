@@ -4,39 +4,44 @@ using UnityEngine;
 using UnityEngine.AI;
 using Sirenix.OdinInspector;
 
+[System.Serializable]
+public struct bodyInfo
+{
+    public Npc.ModelType modelType;
+    public GameObject model;
+    [Space]
+    public Transform rightHand;
+    public Transform leftHand;
+    [Space]
+    public bool hasHair;
+    [ShowIf("@this.hasHair == true")]
+    public GameObject[] hair;
+}
+
+[System.Serializable]
+public struct toolObject
+{
+    public bool leftHanded;
+    public GameObject tool;
+}
+
 public class Npc : MonoBehaviour
 {
     [SerializeField] bool showReferences;
     [SerializeField] [ReadOnly] bool modelLoaded;
+    [SerializeField] [ReadOnly] GameObject activeModel;
 
     [Title("Character")]
-    enum Gender { male, female}
-    [SerializeField] Gender gender;
-    [SerializeField] bool randomMaterial = true;
     [SerializeField] bool randomModel = true;
-    [ShowIf("@this.gender == Gender.male")]
-    [SerializeField] bool randomBeard;
-    [SerializeField] bool randomHat;
-    [SerializeField] bool randomHair;
 
-    [ShowIf("@randomMaterial == false && this.gender == Gender.male")]
-    [SerializeField] [Range(0, 18)] int maleMaterial;
-    [ShowIf("@randomMaterial == false && this.gender == Gender.female")]
-    [SerializeField] [Range(0, 7)] int femaleMaterial;
+    [ShowIf("@this.randomModel == false")]
+    [EnumPaging] public ModelType modelType;
 
-    [ShowIf("@randomModel == false && this.gender == Gender.male")]
-    [EnumPaging] [SerializeField] MaleBodyTypes maleBodyType;
-    enum MaleBodyTypes { normal, fat, skinny, strong, monk }
-    [ShowIf("@randomModel == false && this.gender == Gender.female")]
-    [EnumPaging] [SerializeField] FemaleBodyTypes femaleBodyType;
-    enum FemaleBodyTypes { skinny, plus }
-
-    [ShowIf("@showReferences == true")] [SerializeField] Material[] maleMaterials;
-    [ShowIf("@showReferences == true")] [SerializeField] Material[] femaleMaterials;
+    public enum ModelType { blackSmith, butcher, farmer1, farmer2, farmer3, guard1, guard2, guard3, king, laberor, monk, noble1, noble2, noble3, noble4, trader1, trader2 }
 
     [Title("Work")]
     [EnumToggleButtons]
-    enum TypeWork { unEmployed, building, cooking, farming, fishing, gathering, lumberjacking, mining }
+    enum TypeWork { unemployed, building, cooking, farming, fishing, gathering, lumberjacking, mining }
     [SerializeField] TypeWork typeWork;
 
     #region enums
@@ -74,35 +79,26 @@ public class Npc : MonoBehaviour
 
     [PropertySpace]
 
-    [Title("Props")]
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject hammer;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject farmTool;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject fishingRod;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject axe;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject pickAxe;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject spoon;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject salt;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject wateringCan;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject handSaw;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject sack;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject shovel;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject glass;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject glass2;
-
     [Title("Bodies")]
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject femaleSkinny;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject femalePlus;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject maleMonk;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject maleFat;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject maleNormal;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject maleSkinny;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject maleStrong;
+    [ShowIf("@showReferences == true")] [SerializeField] List<bodyInfo> bodyTypes = new List<bodyInfo>();
 
-    [Title("Hair/Hats")]
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject[] femaleHairs;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject[] maleHairs;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject[] maleBeards;
-    [ShowIf("@showReferences == true")] [SerializeField] GameObject[] hats;
+    [Title("Props")]
+    [ShowIf("@showReferences == true")] [SerializeField] Transform propsDefaultParent;
+    [ShowIf("@showReferences == true")] [SerializeField] toolObject[] props;
+
+    // hammer           0;
+    // farmTool         1;
+    // fishingRod       2;
+    // axe              3;
+    // pickAxe          4;
+    // spoon            5;
+    // salt             6;
+    // wateringCan      7;
+    // handSaw          8;
+    // sack             9;
+    // shovel           10;
+    // glass            11;
+    // glass2           12;
     #endregion
 
     private Animator anim;
@@ -110,8 +106,8 @@ public class Npc : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        SetupAnimator();
         LoadModel();
+        SetupAnimator(activeModel);
     }
 
     [PropertySpace]
@@ -120,8 +116,8 @@ public class Npc : MonoBehaviour
     {
         if (modelLoaded)
             return;
-        SetupObjects();
-        SetupModel();
+
+        activeModel = SetupModel();
         modelLoaded = true;
     }
 
@@ -130,78 +126,70 @@ public class Npc : MonoBehaviour
     [Button]
     void ResetModel()
     {
-        spoon.SetActive(false);
-        salt.SetActive(false);
-        wateringCan.SetActive(false);
-        handSaw.SetActive(false);
-        shovel.SetActive(false);
-        hammer.SetActive(false);
-        farmTool.SetActive(false);
-        fishingRod.SetActive(false);
-        axe.SetActive(false);
-        pickAxe.SetActive(false);
-        sack.SetActive(false);
-        glass.SetActive(false);
-        glass2.SetActive(false);
+        foreach (var body in bodyTypes)
+        {
+            body.model.SetActive(false);
+            if (body.hasHair)
+            {
+                foreach (var hair in body.hair)
+                {
+                    hair.SetActive(false);
+                }
+            }
+        }
 
-        femaleSkinny.SetActive(false);
-        femalePlus.SetActive(false);
-        maleMonk.SetActive(false);
-        maleFat.SetActive(false);
-        maleNormal.SetActive(false);
-        maleSkinny.SetActive(false);
-        maleStrong.SetActive(false);
-
-        foreach (var item in femaleHairs)
+        foreach (var p in props)
         {
-            item.SetActive(false);
-        }
-        foreach (var item in maleHairs)
-        {
-            item.SetActive(false);
-        }
-        foreach (var item in maleBeards)
-        {
-            item.SetActive(false);
-        }
-        foreach (var item in hats)
-        {
-            item.SetActive(false);
+            p.tool.SetActive(false);
+            p.tool.transform.parent = propsDefaultParent;
         }
 
         modelLoaded = false;
+        activeModel = null;
     }
     #endregion
 
-    void SetupObjects()
+    void SetupObjects(bodyInfo hands)
     {
+        foreach (var p in props)
+        {
+            if (p.leftHanded)
+            {
+                p.tool.transform.parent = hands.leftHand.transform;
+            }
+            else
+            {
+                p.tool.transform.parent = hands.rightHand.transform;
+            }
+        }
+
         switch (typeWork)
         {
-            case TypeWork.unEmployed:
+            case TypeWork.unemployed:
                 break;
             case TypeWork.building:
                 switch (typeBuilding)
                 {
                     case TypeBuilding.crouchGround:
-                        hammer.SetActive(true);
+                        props[0].tool.SetActive(true);
                         break;
                     case TypeBuilding.standingWallV1:
-                        hammer.SetActive(true);
+                        props[0].tool.SetActive(true);
                         break;
                     case TypeBuilding.standingWallV2:
-                        hammer.SetActive(true);
+                        props[0].tool.SetActive(true);
                         break;
                     case TypeBuilding.onTableV1:
-                        hammer.SetActive(true);
+                        props[0].tool.SetActive(true);
                         break;
                     case TypeBuilding.onTableV2:
-                        hammer.SetActive(true);
+                        props[0].tool.SetActive(true);
                         break;
                     case TypeBuilding.standingSawingV1:
-                        handSaw.SetActive(true);
+                        props[8].tool.SetActive(true);
                         break;
                     case TypeBuilding.standingSawingV2:
-                        handSaw.SetActive(true);
+                        props[8].tool.SetActive(true);
                         break;
                     default:
                         break;
@@ -211,14 +199,14 @@ public class Npc : MonoBehaviour
                 switch (typeCooking)
                 {
                     case TypeCooking.stirPot:
-                        spoon.SetActive(true);
+                        props[5].tool.SetActive(true);
                         break;
                     case TypeCooking.addSeasoning:
-                        salt.SetActive(true);
+                        props[6].tool.SetActive(true);
                         break;
                     case TypeCooking.addDrinks:
-                        glass.SetActive(true);
-                        glass2.SetActive(true);
+                        props[11].tool.SetActive(true);
+                        props[12].tool.SetActive(true);
                         break;
                     default:
                         break;
@@ -228,26 +216,26 @@ public class Npc : MonoBehaviour
                 switch (typeFarming)
                 {
                     case TypeFarming.idle:
-                        farmTool.SetActive(true);
+                        props[1].tool.SetActive(true);
                         break;
                     case TypeFarming.working:
-                        farmTool.SetActive(true);
+                        props[1].tool.SetActive(true);
                         break;
                     case TypeFarming.plantSeedsV1:
-                        sack.SetActive(true);
+                        props[9].tool.SetActive(true);
                         break;
                     case TypeFarming.plantSeedsV2:
-                        sack.SetActive(true);
+                        props[9].tool.SetActive(true);
                         break;
                     case TypeFarming.pouringWater:
-                        wateringCan.SetActive(true);
+                        props[7].tool.SetActive(true);
                         break;
                     default:
                         break;
                 }
                 break;
             case TypeWork.fishing:
-                fishingRod.SetActive(true);
+                props[2].tool.SetActive(true);
                 break;
             case TypeWork.gathering:
                 switch (typeGathering)
@@ -263,7 +251,7 @@ public class Npc : MonoBehaviour
                 }
                 break;
             case TypeWork.lumberjacking:
-                axe.SetActive(true);
+                props[3].tool.SetActive(true);
                 switch (typeLumberjacking)
                 {
                     case TypeLumberjacking.choppingSide:
@@ -280,16 +268,16 @@ public class Npc : MonoBehaviour
                 switch (typeMining)
                 {
                     case TypeMining.miningV1:
-                        pickAxe.SetActive(true);
+                        props[4].tool.SetActive(true);
                         break;
                     case TypeMining.miningV2:
-                        pickAxe.SetActive(true);
+                        props[4].tool.SetActive(true);
                         break;
                     case TypeMining.diggingV1:
-                        shovel.SetActive(true);
+                        props[10].tool.SetActive(true);
                         break;
                     case TypeMining.diggingV2:
-                        shovel.SetActive(true);
+                        props[10].tool.SetActive(true);
                         break;
                     default:
                         break;
@@ -300,11 +288,16 @@ public class Npc : MonoBehaviour
         }
     }
 
-    void SetupAnimator()
+    void SetupAnimator(GameObject model)
     {
+        anim = model.GetComponent<Animator>();
+
+        if (anim == null)
+            return;
+
         switch (typeWork)
         {
-            case TypeWork.unEmployed:
+            case TypeWork.unemployed:
                 anim.SetBool("UnEmployed", true);
                 break;
             case TypeWork.building:
@@ -438,108 +431,33 @@ public class Npc : MonoBehaviour
         }
     }
 
-    void SetupModel()
+    GameObject SetupModel()
     {
-        switch(gender)
+        if (randomModel)
         {
-            case Gender.male:
-                if (randomModel)
-                {
-                    System.Array values = System.Enum.GetValues(typeof(MaleBodyTypes));
-                    maleBodyType = (MaleBodyTypes)values.GetValue(Random.Range(0, values.Length));
-                }
-                GameObject modelRef = GetMaleBody();
-                Material m = maleMaterials[maleMaterial];
-                if (randomMaterial)
-                {
-                    m = maleMaterials[Random.Range(0, maleMaterials.Length)];
-                }
-                if (randomBeard)
-                {
-                    int randomBeard = Random.Range(0, maleBeards.Length);
-                    maleBeards[randomBeard].GetComponent<Renderer>().material = m;
-                    maleBeards[randomBeard].SetActive(true);
-                }
-                if (randomHair)
-                {
-                    int randomNumber = Random.Range(0, maleHairs.Length);
-                    maleHairs[randomNumber].GetComponent<Renderer>().material = m;
-                    maleHairs[randomNumber].SetActive(true);
-                }
-                modelRef.GetComponent<Renderer>().material = m;
-                if (randomHat)
-                {
-                    int randomNumber = Random.Range(0, hats.Length);
-                    hats[randomNumber].SetActive(true);
-                }
-                break;
-            case Gender.female:
-                if (randomModel)
-                {
-                    System.Array values = System.Enum.GetValues(typeof(FemaleBodyTypes));
-                    femaleBodyType = (FemaleBodyTypes)values.GetValue(Random.Range(0, values.Length));
-                }
-                GameObject femaleRef = GetFemaleBody();
-                Material fm = femaleMaterials[femaleMaterial];
-                if (randomMaterial)
-                {
-                    fm = femaleMaterials[Random.Range(0, femaleMaterials.Length)];
-                }
-                if (randomHair)
-                {
-                    int randomNumber = Random.Range(0, hats.Length);
-                    femaleHairs[randomNumber].GetComponent<Renderer>().material = fm;
-                    femaleHairs[randomNumber].SetActive(true);
-                }
-                femaleRef.GetComponent<Renderer>().material = fm;
-                if (randomHat)
-                {
-                    int randomNumber = Random.Range(0, hats.Length);
-                    hats[randomNumber].SetActive(true);
-                }
-                break;
-            default:
-                break;
+            System.Array values = System.Enum.GetValues(typeof(ModelType));
+            modelType = (ModelType)values.GetValue(Random.Range(0, values.Length));
         }
+        return GetCharacterModel();
     }
 
-    GameObject GetFemaleBody()
+    GameObject GetCharacterModel()
     {
-        switch (femaleBodyType)
+        foreach (var body in bodyTypes)
         {
-            case FemaleBodyTypes.skinny:
-                femaleSkinny.SetActive(true);
-                return femaleSkinny;
-            case FemaleBodyTypes.plus:
-                femalePlus.SetActive(true);
-                return femalePlus;
-            default:
-                break;
-        }
-        return null;
-    }
+            if (body.modelType == modelType)
+            {
+                body.model.SetActive(true);
 
-    GameObject GetMaleBody()
-    {
-        switch (maleBodyType)
-        {
-            case MaleBodyTypes.normal:
-                maleNormal.SetActive(true);
-                return maleNormal;
-            case MaleBodyTypes.fat:
-                maleFat.SetActive(true);
-                return maleFat;
-            case MaleBodyTypes.skinny:
-                maleSkinny.SetActive(true);
-                return maleSkinny;
-            case MaleBodyTypes.strong:
-                maleStrong.SetActive(true);
-                return maleStrong;
-            case MaleBodyTypes.monk:
-                maleMonk.SetActive(true);
-                return maleMonk;
-            default:
-                break;
+                if (body.hasHair)
+                {
+                    body.hair[Random.Range(0, body.hair.Length)].SetActive(true);
+                }
+
+                SetupObjects(body);
+
+                return body.model;
+            }
         }
         return null;
     }
