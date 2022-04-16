@@ -6,6 +6,8 @@ public class Fps : MonoBehaviour
 
 	string label = "";
 	string avg = "";
+	string graphicsSettings = "";
+	string vSyncSettings = "";
 	float count;
 	float average;
 	float total;
@@ -33,11 +35,32 @@ public class Fps : MonoBehaviour
 		}
 	}
 
-	void OnGUI()
+    private void Update()
+    {
+		graphicsSettings = "currentquality: " + QualitySettings.GetQualityLevel().ToString();
+        if (Input.GetKeyDown(KeyCode.V))
+		{
+			if (QualitySettings.vSyncCount == 1)
+			{
+				QualitySettings.vSyncCount = 0;
+			}
+            else
+			{
+				QualitySettings.vSyncCount = 1;
+			}
+		}
+		vSyncSettings = "Press V to toggle Vsync (" + QualitySettings.vSyncCount.ToString() + ")";
+	}
+
+    void OnGUI()
 	{
 		GUI.color = Color.black;
 		GUI.skin.label.fontSize = 50;
 		GUI.Label(new Rect(10, 80, 400, 500), label);
 		GUI.Label(new Rect(10, 160, 400, 500), avg);
+		GUI.skin.label.fontSize = 35;
+		GUI.Label(new Rect(10, 240, 400, 500), graphicsSettings);
+		GUI.Label(new Rect(10, 300, 400, 500), vSyncSettings);
+
 	}
 }
