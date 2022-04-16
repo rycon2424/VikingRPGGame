@@ -10,8 +10,9 @@ public class EnemyBehaviour : EnemyPawn
     public float attackDistance = 2f;
     public float lookDistance = 5;
     public float hearDistance = 2;
-    [Space]
+    [Header("Animations")]
     public int deadAnimations = 1;
+    public int attackAnimations = 5;
     [Space]
     [Range(0, 180)] public int viewAngle = 70;
     [Range(0, 1)] public float stunTime;
@@ -36,15 +37,15 @@ public class EnemyBehaviour : EnemyPawn
     [SerializeField] bool showPrivate;
 
     [Header("Private/Dont Assign")]
-    [ShowIf("showPrivate")] [SerializeField] int notWalkedStraight;
-    [ShowIf("showPrivate")] [SerializeField] Transform player;
-    [ShowIf("showPrivate")] [SerializeField] bool targetOfPlayer;
-    [ShowIf("showPrivate")] [SerializeField] bool attackCooldown;
-    [ShowIf("showPrivate")] [SerializeField] bool lostPlayer;
-    [ShowIf("showPrivate")] [SerializeField] bool walkBehaviour;
-    [ShowIf("showPrivate")] [SerializeField] bool rotateCooldown;
-    [ShowIf("showPrivate")] [SerializeField] float randomInt;
-    [ShowIf("showPrivate")] [SerializeField] float distancePlayer;
+    [ShowIf("showPrivate")] [SerializeField] [ReadOnly] int notWalkedStraight;
+    [ShowIf("showPrivate")] [SerializeField] [ReadOnly] Transform player;
+    [ShowIf("showPrivate")] [SerializeField] [ReadOnly] bool targetOfPlayer;
+    [ShowIf("showPrivate")] [SerializeField] [ReadOnly] bool attackCooldown;
+    [ShowIf("showPrivate")] [SerializeField] [ReadOnly] bool lostPlayer;
+    [ShowIf("showPrivate")] [SerializeField] [ReadOnly] bool walkBehaviour;
+    [ShowIf("showPrivate")] [SerializeField] [ReadOnly] bool rotateCooldown;
+    [ShowIf("showPrivate")] [SerializeField] [ReadOnly] float randomInt;
+    [ShowIf("showPrivate")] [SerializeField] [ReadOnly] float distancePlayer;
 
     private NavMeshAgent agent;
     private PlayerBehaviour pb;
@@ -337,7 +338,7 @@ public class EnemyBehaviour : EnemyPawn
 
     void Attack()
     {
-        anim.SetInteger("AttackType", Random.Range(1, 6));
+        anim.SetInteger("AttackType", Random.Range(1, attackAnimations + 1));
         anim.SetTrigger("Attack");
         StartCoroutine(AttackCld());
     }
@@ -435,6 +436,7 @@ public class EnemyBehaviour : EnemyPawn
     }
 
     #endregion
+
 
     private void OnDrawGizmos()
     {
