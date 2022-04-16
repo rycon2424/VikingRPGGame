@@ -61,6 +61,5 @@ public class Fps : MonoBehaviour
 		GUI.skin.label.fontSize = 35;
 		GUI.Label(new Rect(10, 240, 400, 500), graphicsSettings);
 		GUI.Label(new Rect(10, 300, 400, 500), vSyncSettings);
-
 	}
 }
