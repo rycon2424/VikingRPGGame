@@ -25,8 +25,9 @@ public struct toolObject
     public GameObject tool;
 }
 
-public class Npc : MonoBehaviour
+public class Npc : Actor
 {
+    [Space]
     [SerializeField] bool showReferences;
     [SerializeField] [ReadOnly] bool modelLoaded;
     [SerializeField] [ReadOnly] GameObject activeModel;
@@ -85,6 +86,12 @@ public class Npc : MonoBehaviour
     [Title("Props")]
     [ShowIf("@showReferences == true")] [SerializeField] Transform propsDefaultParent;
     [ShowIf("@showReferences == true")] [SerializeField] toolObject[] props;
+    [Space]
+    [Title("Gizmo")]
+    [ShowIf("@showReferences == true")] [SerializeField] bool drawGizmo = true;
+    [ShowIf("@showReferences == true")] [SerializeField] Mesh gizmoMesh;
+    [ShowIf("@showReferences == true")] [SerializeField] Vector3 gizmoOffset;
+    [ShowIf("@showReferences == true")] [SerializeField] Vector3 gizmoSize;
 
     // hammer           0;
     // farmTool         1;
@@ -101,13 +108,28 @@ public class Npc : MonoBehaviour
     // glass2           12;
     #endregion
 
-    private Animator anim;
-
     void Start()
     {
         anim = GetComponent<Animator>();
         LoadModel();
         SetupAnimator(activeModel);
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        if (dead)
+            return;
+        health -= damage;
+        if (health < 1)
+        {
+            dead = true;
+            anim.SetTrigger("Dead");
+        }
+        else
+        {
+            anim.Play("Damaged");
+        }
     }
 
     [PropertySpace]
@@ -462,8 +484,15 @@ public class Npc : MonoBehaviour
         return null;
     }
 
-    void Update()
+    private void OnDrawGizmos()
     {
-        
+        Gizmos.color = Color.green;
+        if (modelLoaded == false)
+        {
+            if (drawGizmo)
+            {
+                Gizmos.DrawWireMesh(gizmoMesh, transform.position + gizmoOffset, transform.rotation, gizmoSize);
+            }
+        }
     }
 }

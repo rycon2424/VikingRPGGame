@@ -6,6 +6,9 @@ using Sirenix.OdinInspector;
 
 public class EnemyBehaviour : EnemyPawn
 {
+    [Space]
+    public bool friendly;
+    [Space]
     public float runDistance = 5;
     public float attackDistance = 2f;
     public float lookDistance = 5;
@@ -243,16 +246,16 @@ public class EnemyBehaviour : EnemyPawn
 
     void Patrol()
     {
-        //if (distancePlayer <= hearDistance)
-        //{
-        //    if (pb.crouched == false)
-        //    {
-        //        SwitchState(EnemyStates.inCombat);
-        //    }
-        //}
-        if (PlayerInSight())
+        if (distancePlayer <= hearDistance)
         {
-            SwitchState(EnemyStates.chasing);
+            SwitchState(EnemyStates.inCombat);
+        }
+        if (friendly == false)
+        {
+            if (PlayerInSight())
+            {
+                SwitchState(EnemyStates.chasing);
+            }
         }
     }
 
