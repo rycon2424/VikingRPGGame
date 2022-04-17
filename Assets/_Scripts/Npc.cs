@@ -46,6 +46,12 @@ public class Npc : Actor
     [SerializeField] TypeWork typeWork;
 
     #region enums
+
+
+    [ShowIf("@this.typeWork == TypeWork.unemployed")]
+    enum TypeIdle { standing, sittingBench, sittingGround}
+    [SerializeField] TypeIdle typeIdle;
+
     [ShowIf("@this.typeWork == TypeWork.building")]
     enum TypeBuilding {crouchGround, standingWallV1, standingWallV2, onTableV1, onTableV2, standingSawingV1, standingSawingV2 }
     [SerializeField] TypeBuilding typeBuilding;
@@ -321,6 +327,20 @@ public class Npc : Actor
         {
             case TypeWork.unemployed:
                 anim.SetBool("UnEmployed", true);
+                switch (typeIdle)
+                {
+                    case TypeIdle.standing:
+                        anim.SetInteger("Type", 1);
+                        break;
+                    case TypeIdle.sittingBench:
+                        anim.SetInteger("Type", 2);
+                        break;
+                    case TypeIdle.sittingGround:
+                        anim.SetInteger("Type", 3);
+                        break;
+                    default:
+                        break;
+                }
                 break;
             case TypeWork.building:
                 anim.SetBool("Building", true);

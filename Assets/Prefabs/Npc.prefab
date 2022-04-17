@@ -46143,8 +46143,9 @@ MonoBehaviour:
   modelLoaded: 0
   activeModel: {fileID: 0}
   randomModel: 1
-  modelType: 10
+  modelType: 14
   typeWork: 0
+  typeIdle: 2
   typeBuilding: 0
   typeCooking: 2
   typeFarming: 3
