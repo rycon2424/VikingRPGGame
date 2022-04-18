@@ -151,7 +151,15 @@ public class EnemyBehaviour : EnemyPawn
                 }
                 else
                 {
-                    StartCoroutine("GoToPost");
+                    if (oldPost)
+                    {
+                        StartCoroutine("GoToPost");
+                    }
+                    else
+                    {
+                        anim.SetBool("Walking", false);
+                        agent.SetDestination(transform.position);
+                    }
                 }
 
                 anim.SetBool("inCombat", false);
@@ -268,7 +276,10 @@ public class EnemyBehaviour : EnemyPawn
         agent.SetDestination(player.position);
         if (distancePlayer < runDistance)
         {
-            SwitchState(EnemyStates.inCombat);
+            if (PlayerInSight())
+            {
+                SwitchState(EnemyStates.inCombat);
+            }
         }
         else if (distancePlayer > runDistance + 2)
         {
@@ -314,6 +325,12 @@ public class EnemyBehaviour : EnemyPawn
 
     void InCombat()
     {
+        if (PlayerInSight() == false)
+        {
+            anim.SetBool("Walking", true);
+            SwitchState(EnemyStates.chasing);
+            return;
+        }
         if (rotateCooldown == false)
         {
             RotateTowardsPlayer();

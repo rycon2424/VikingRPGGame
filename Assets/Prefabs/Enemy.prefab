@@ -156,25 +156,28 @@ MonoBehaviour:
   health: 100
   stamina: 100
   dead: 0
+  invincible: 0
   damage: 20
   blood: {fileID: 4401660665832579858}
   anim: {fileID: 0}
   givenVelocity: {x: 0, y: 0, z: 0}
+  friendly: 0
   runDistance: 5
   attackDistance: 2
   lookDistance: 8.4
   hearDistance: 2
   deadAnimations: 3
+  attackAnimations: 5
   viewAngle: 70
   stunTime: 1
   minThinkTime: 1
   maxThinkTime: 2
-  chaseTime: 0
+  chaseTime: 8.4
   currentState: 0
   dropWeapon:
   - {fileID: 7202444807029363993}
   - {fileID: 991776239926560825}
-  oldPost: 0
+  oldPost: 1
   patrolPoints: []
   debugPos: {fileID: 0}
   colorDebug:
@@ -1913,7 +1916,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4046095963420430102}
   m_LocalRotation: {x: -0.16153881, y: 0.22917125, z: 0.55810094, w: -0.7809668}
-  m_LocalPosition: {x: 2.229721, y: 84.25651, z: 0.67158526}
+  m_LocalPosition: {x: 2.2297063, y: 84.25651, z: 0.6716039}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

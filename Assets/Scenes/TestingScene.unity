@@ -5183,16 +5183,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 991776239926253262, guid: a9f01d75a059b4a42bb63f625662c495,
-        type: 3}
-      propertyPath: chaseTime
-      value: 8.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 991776239926253262, guid: a9f01d75a059b4a42bb63f625662c495,
-        type: 3}
-      propertyPath: lookAtPlayerCombat
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 991776239926603947, guid: a9f01d75a059b4a42bb63f625662c495,
         type: 3}
       propertyPath: m_RootOrder
@@ -5247,16 +5237,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4048458818420912962, guid: a9f01d75a059b4a42bb63f625662c495,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.2297063
-      objectReference: {fileID: 0}
-    - target: {fileID: 4048458818420912962, guid: a9f01d75a059b4a42bb63f625662c495,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.6716039
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9f01d75a059b4a42bb63f625662c495, type: 3}
@@ -5444,6 +5424,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 991776239926253262, guid: a9f01d75a059b4a42bb63f625662c495,
+        type: 3}
+      propertyPath: oldPost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 991776239926253262, guid: a9f01d75a059b4a42bb63f625662c495,
+        type: 3}
+      propertyPath: friendly
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 991776239926253262, guid: a9f01d75a059b4a42bb63f625662c495,
         type: 3}
@@ -8980,6 +8970,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 991776239926253262, guid: a9f01d75a059b4a42bb63f625662c495,
         type: 3}
+      propertyPath: oldPost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 991776239926253262, guid: a9f01d75a059b4a42bb63f625662c495,
+        type: 3}
+      propertyPath: friendly
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 991776239926253262, guid: a9f01d75a059b4a42bb63f625662c495,
+        type: 3}
       propertyPath: chaseTime
       value: 8.4
       objectReference: {fileID: 0}
@@ -12364,6 +12364,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 991776239926253262, guid: a9f01d75a059b4a42bb63f625662c495,
+        type: 3}
+      propertyPath: oldPost
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 991776239926253262, guid: a9f01d75a059b4a42bb63f625662c495,
+        type: 3}
+      propertyPath: friendly
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 991776239926253262, guid: a9f01d75a059b4a42bb63f625662c495,
         type: 3}
