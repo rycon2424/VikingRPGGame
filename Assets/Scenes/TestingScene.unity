@@ -2403,10 +2403,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subtitle: {fileID: 237933106}
   choices:
-  - {fileID: 1886749328}
-  - {fileID: 1749989231}
-  - {fileID: 776474029}
   - {fileID: 1372115290}
+  - {fileID: 776474029}
+  - {fileID: 1749989231}
+  - {fileID: 1886749328}
 --- !u!1001 &434001677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3746,7 +3746,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7102,7 +7102,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10035,7 +10035,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10698,7 +10698,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13824,6 +13824,79 @@ MonoBehaviour:
   playerInRange: 0
   player: {fileID: 0}
   convoCamera: {fileID: 71510671}
+  openingChoice:
+    playerSentence: 
+    returnSentence: Hello There!
+    durationPerWord: 0.35
+    endConv: 0
+    hostileOption: 0
+    startEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    choices:
+    - playerSentence: Sup
+      returnSentence: sample text
+      durationPerWord: 0.35
+      endConv: 0
+      hostileOption: 0
+      startEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      choices:
+      - playerSentence: Tell me more
+        returnSentence: sample text
+        durationPerWord: 0.35
+        endConv: 0
+        hostileOption: 0
+        startEvent:
+          m_PersistentCalls:
+            m_Calls: []
+        choices: []
+      - playerSentence: Bye
+        returnSentence: Goodbye!
+        durationPerWord: 0.35
+        endConv: 1
+        hostileOption: 0
+        startEvent:
+          m_PersistentCalls:
+            m_Calls: []
+        choices: []
+    - playerSentence: Who are you?
+      returnSentence: sample text
+      durationPerWord: 0.35
+      endConv: 0
+      hostileOption: 0
+      startEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      choices:
+      - playerSentence: Interesting
+        returnSentence: sample text
+        durationPerWord: 0.35
+        endConv: 0
+        hostileOption: 0
+        startEvent:
+          m_PersistentCalls:
+            m_Calls: []
+        choices: []
+      - playerSentence: see you
+        returnSentence: Goodbye!
+        durationPerWord: 0.35
+        endConv: 1
+        hostileOption: 0
+        startEvent:
+          m_PersistentCalls:
+            m_Calls: []
+        choices: []
+    - playerSentence: Walk Away
+      returnSentence: Goodbye!
+      durationPerWord: 0.35
+      endConv: 1
+      hostileOption: 0
+      startEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      choices: []
 --- !u!137 &137327720288694798
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

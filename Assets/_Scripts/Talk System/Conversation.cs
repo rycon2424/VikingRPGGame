@@ -26,6 +26,7 @@ public class Conversation : TalkAble
     {
         convoCamera.SetActive(true);
         player.oc.gameObject.SetActive(false);
+        GConversationUI.Instance.UpdateConvo(this);
         GConversationUI.Instance.UpdateSubtitle(openingChoice);
     }
 
@@ -73,7 +74,7 @@ public class ConvoOptions
                 index++;
         }
 
-        length = index * durationPerWord;
+        length = wordCount * durationPerWord;
 
         return length;
     }
