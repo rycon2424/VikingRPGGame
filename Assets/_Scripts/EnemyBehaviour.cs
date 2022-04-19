@@ -131,6 +131,8 @@ public class EnemyBehaviour : EnemyPawn
             weapon.GetComponent<Rigidbody>().isKinematic = false;
             weapon.GetComponent<Collider>().enabled = true;
         }
+
+        SwitchState(EnemyStates.dead);
     }
 
     void SwitchState(EnemyStates es)
@@ -325,7 +327,7 @@ public class EnemyBehaviour : EnemyPawn
 
     void InCombat()
     {
-        if (PlayerInSight() == false)
+        if (Vector3.Distance(transform.position, player.position) > 1.25f && PlayerInSight() == false)
         {
             anim.SetBool("Walking", true);
             SwitchState(EnemyStates.chasing);
@@ -456,7 +458,6 @@ public class EnemyBehaviour : EnemyPawn
     }
 
     #endregion
-
 
     private void OnDrawGizmos()
     {
