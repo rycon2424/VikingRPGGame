@@ -1,5 +1,0 @@
-Bake light:
-
-Reduce Magica Cloth Vertices:
-
-Check in build fps without Vsync:

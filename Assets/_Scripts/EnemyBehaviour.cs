@@ -104,7 +104,7 @@ public class EnemyBehaviour : EnemyPawn
             anim.Play("Damaged");
             if (health < 1)
             {
-                currentState = EnemyStates.dead;
+                SwitchState(EnemyStates.dead);
                 dead = true;
                 health = 0;
                 Death();
@@ -131,14 +131,16 @@ public class EnemyBehaviour : EnemyPawn
             weapon.GetComponent<Rigidbody>().isKinematic = false;
             weapon.GetComponent<Collider>().enabled = true;
         }
-
-        SwitchState(EnemyStates.dead);
     }
 
     void SwitchState(EnemyStates es)
     {
         currentState = es;
         anim.SetInteger("WalkingDir", 0);
+        if (dead)
+        {
+            currentState = EnemyStates.dead;
+        }
         switch (currentState)
         {
             case EnemyStates.normal:
