@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class GWorld : MonoBehaviour
 {
-    public int playerBounty = 0;
-    public bool playerInCombat = false;
+    [SerializeField] int playerBounty = 0;
+    [Space]
+    [SerializeField] int enemyAmountCombat = 0;
+    [ReadOnly] public bool playerInCombat = false;
 }
