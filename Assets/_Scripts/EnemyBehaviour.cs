@@ -96,6 +96,13 @@ public class EnemyBehaviour : EnemyPawn
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+
+        RaycastHit hit;
+
+        Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, 2);
+
+        GObjectPool.instance.SpawnObject("Blood", hit.point + Vector3.up * 0.02f, hit.normal, 30f, new Vector3(90, Random.Range(0, 361), 0));
+
         if (dead == false)
         {
             health -= damage;

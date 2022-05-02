@@ -48,7 +48,8 @@ public class ConvoOptions
     public bool hostileOption;
     public UnityEvent startEvent = new UnityEvent();
     [Space]
-    [SerializeField] ConvoOptions[] choices = new ConvoOptions[0];
+
+    [ShowIf("@endConv == false")] [SerializeField] ConvoOptions[] choices = new ConvoOptions[0];
 
     public ConvoOptions[] GetChoices()
     {
