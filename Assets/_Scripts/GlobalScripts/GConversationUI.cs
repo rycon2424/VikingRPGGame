@@ -9,7 +9,8 @@ using Sirenix.Serialization;
 public class GConversationUI : MonoBehaviour
 {
     public TMP_Text subtitle;
-    public TMP_Text[] choices = new TMP_Text[4];
+    public GameObject subtitleBg;
+    public Button[] choices = new Button[4];
     [Space]
     [ReadOnly][ShowInInspector] bool canMakeChoice;
     [ReadOnly][ShowInInspector] Conversation talkAble;
@@ -53,6 +54,16 @@ public class GConversationUI : MonoBehaviour
         }
     }
 
+    //Button
+    public void Button_ContinueConvo(int answer)
+    {
+        int convoLength = convo.GetChoices().Length;
+        if (convoLength > answer)
+        {
+            UpdateSubtitle(convo.GetChoices()[answer]);
+        }
+    }
+
     public void UpdateConvo(Conversation newConversation)
     {
         talkAble = newConversation;
@@ -60,6 +71,11 @@ public class GConversationUI : MonoBehaviour
 
     public void UpdateSubtitle(ConvoOptions option)
     {
+        subtitleBg.SetActive(true);
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         convo = option;
         subtitle.text = option.returnSentence;
         canMakeChoice = false;
@@ -68,13 +84,14 @@ public class GConversationUI : MonoBehaviour
 
     public void SetupChoices(ConvoOptions option)
     {
-        foreach (TMP_Text t in choices)
+        foreach (Button t in choices)
         {
-            t.text = "";
+            t.gameObject.SetActive(false);
         }
         for (int i = 0; i < option.GetChoices().Length; i++)
         {
-            choices[i].text = (i + 1) + " " + option.GetChoices()[i].playerSentence;
+            choices[i].gameObject.SetActive(true);
+            choices[i].GetComponentInChildren<TMP_Text>().text = (i + 1) + " " + option.GetChoices()[i].playerSentence;
         }
     }
 
@@ -85,11 +102,16 @@ public class GConversationUI : MonoBehaviour
         if (option.endConv || option.hostileOption)
         {
             subtitle.text = "";
-            foreach (TMP_Text t in choices)
+            foreach (Button t in choices)
             {
-                t.text = "";
+                t.gameObject.SetActive(false);
             }
             canMakeChoice = false;
+            subtitleBg.SetActive(false);
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
             talkAble.EndConversation();
         }
         else
