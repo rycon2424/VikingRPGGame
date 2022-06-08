@@ -10672,12 +10672,12 @@ PrefabInstance:
     - target: {fileID: 8376190223712503694, guid: c265e11f635d8404db886f9e74368b58,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.2971698
+      value: 0.2980392
       objectReference: {fileID: 0}
     - target: {fileID: 8376190223712503694, guid: c265e11f635d8404db886f9e74368b58,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.72127044
+      value: 0.36037603
       objectReference: {fileID: 0}
     - target: {fileID: 8376190223712503694, guid: c265e11f635d8404db886f9e74368b58,
         type: 3}
@@ -10791,6 +10791,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8376190224208545673, guid: c265e11f635d8404db886f9e74368b58,
         type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.030838363
+      objectReference: {fileID: 0}
+    - target: {fileID: 8376190224208545673, guid: c265e11f635d8404db886f9e74368b58,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.13811637
+      objectReference: {fileID: 0}
+    - target: {fileID: 8376190224208545673, guid: c265e11f635d8404db886f9e74368b58,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 8376190224208545673, guid: c265e11f635d8404db886f9e74368b58,
+        type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key1.a
       value: 0.9372549
       objectReference: {fileID: 0}
@@ -10828,6 +10843,11 @@ PrefabInstance:
         type: 3}
       propertyPath: scalingMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8376190225195556294, guid: c265e11f635d8404db886f9e74368b58,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.10111071
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c265e11f635d8404db886f9e74368b58, type: 3}
