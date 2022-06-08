@@ -10,10 +10,19 @@ public class Conversation : TalkAble
     [Space]
     [SerializeField] GameObject convoCamera;
     [ShowInInspector] [SerializeField] ConvoOptions openingChoice = new ConvoOptions();
+    [Space]
+    [SerializeField] Transform pressE;
+    [SerializeField] Transform playercam;
 
     public override void Start()
     {
         base.Start();
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        pressE.transform.LookAt(playercam);
     }
 
     public override void Talk()

@@ -97,6 +97,10 @@ public class GConversationUI : MonoBehaviour
 
     IEnumerator EndSubtitle(ConvoOptions option)
     {
+        foreach (Button t in choices)
+        {
+            t.gameObject.SetActive(false);
+        }
         yield return new WaitForSeconds(option.GetSubtitlesLength());
         canMakeChoice = true;
         if (option.endConv || option.hostileOption)
