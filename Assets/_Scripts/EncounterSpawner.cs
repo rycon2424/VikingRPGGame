@@ -17,7 +17,7 @@ public class EncounterSpawner : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         PlayerBehaviour pb = other.GetComponent<PlayerBehaviour>();
-        if (onCooldown)
+        if (onCooldown == false)
         {
             if (pb != null)
             {
@@ -39,5 +39,17 @@ public class EncounterSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(cooldown);
         onCooldown = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (spawnpositions.Length > 0)
+        {
+            foreach (var spawnpoint in spawnpositions)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawCube(spawnpoint.position, Vector3.one);
+            }
+        }
     }
 }

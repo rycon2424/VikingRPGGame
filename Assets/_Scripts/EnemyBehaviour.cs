@@ -99,7 +99,7 @@ public class EnemyBehaviour : EnemyPawn
 
         RaycastHit hit;
 
-        Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, 2);
+        Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, 2, bloodSplatter);
 
         GObjectPool.instance.SpawnObject("Blood", hit.point + Vector3.up * 0.02f, hit.normal, 30f, new Vector3(90, Random.Range(0, 361), 0));
 

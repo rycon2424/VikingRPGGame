@@ -159,6 +159,9 @@ MonoBehaviour:
   invincible: 0
   damage: 20
   blood: {fileID: 4401660665832579858}
+  bloodSplatter:
+    serializedVersion: 2
+    m_Bits: 1
   anim: {fileID: 0}
   givenVelocity: {x: 0, y: 0, z: 0}
   friendly: 0
@@ -172,12 +175,12 @@ MonoBehaviour:
   stunTime: 1
   minThinkTime: 1
   maxThinkTime: 2
-  chaseTime: 8.4
+  chaseTime: 8.2
   currentState: 0
   dropWeapon:
   - {fileID: 7202444807029363993}
   - {fileID: 991776239926560825}
-  oldPost: 1
+  oldPost: 0
   patrolPoints: []
   debugPos: {fileID: 0}
   colorDebug:

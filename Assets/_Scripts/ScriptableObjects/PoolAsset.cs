@@ -14,4 +14,3 @@ public class PoolAsset : ScriptableObject
 
     [ReadOnly] public List<GameObject> spawnedObjects = new List<GameObject>();
 }
-

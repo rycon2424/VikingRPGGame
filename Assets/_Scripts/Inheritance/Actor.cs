@@ -12,6 +12,7 @@ public class Actor : MonoBehaviour
     public int damage = 20;
     [Space]
     public ParticleSystem blood;
+    public LayerMask bloodSplatter;
     [HideInInspector] public Animator anim;
     [HideInInspector] public Vector3 givenVelocity;
 
