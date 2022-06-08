@@ -34,7 +34,7 @@ Material:
     - _InvFade: 3
     - _PW_VFX_Weather_Intensity: 0
     m_Colors:
-    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 0.5453125}
     - _TilingAndSpeed: {r: 18.29, g: 2, b: 0, a: 20}
     - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []

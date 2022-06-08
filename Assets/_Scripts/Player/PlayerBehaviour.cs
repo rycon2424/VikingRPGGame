@@ -92,6 +92,11 @@ public class PlayerBehaviour : Actor
             return;
         }
         health -= damage;
+        if (health <= 0)
+        {
+            anim.Play("Death");
+            dead = true;
+        }
         TakeDamageEvent.Invoke();
     }
 
