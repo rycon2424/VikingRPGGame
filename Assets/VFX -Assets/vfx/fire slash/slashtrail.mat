@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4742379290120801014
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: slashtrail
+  m_Shader: {fileID: -6465566751694194690, guid: 60d806e85a89fb144a7e274484a4f49b,
+    type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_5ece8d1432554ad09f3489e59ddd922e:
+        m_Texture: {fileID: 2800000, guid: 22fc4168062899441a17dda24261a335, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_ac08a0fc032f4c26ade23dd5df944536:
+        m_Texture: {fileID: 2800000, guid: 7170aa319bbc721419dba9b30761223a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_85d00d0a5573493f933c648c646a95d2_Out_0:
+        m_Texture: {fileID: 2800000, guid: 7170aa319bbc721419dba9b30761223a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - Vector1_68b6043c85e7486fbb3682a3960bb8a5: 0.09
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    m_Colors:
+    - Color_6ee30d25271f433090a3317d076f46bd: {r: 21.36125, g: 21.36125, b: 21.36125,
+        a: 0}
+    - Color_7fa5b5f0397e4523a48d11a4b25a99d6: {r: 0, g: 0, b: 0, a: 0}
+    - Color_f4011472467d4499932f6ca7611ff570: {r: 4, g: 4, b: 4, a: 0}
+    - Vector2_a31f0555bf374ee592fb67c1f76811b5: {r: 1, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
