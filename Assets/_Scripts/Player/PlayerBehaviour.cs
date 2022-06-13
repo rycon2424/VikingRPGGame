@@ -40,6 +40,7 @@ public class PlayerBehaviour : Actor
 
     [Header("Events")]
     public UnityEvent TakeDamageEvent;
+    public UnityEvent OnDeath;
 
     #region public hidden
     [HideInInspector] public CharacterController cc;
@@ -106,6 +107,7 @@ public class PlayerBehaviour : Actor
             anim.Play("Death");
             dead = true;
             StopRage();
+            OnDeath.Invoke();
         }
         TakeDamageEvent.Invoke();
     }

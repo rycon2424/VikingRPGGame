@@ -28931,6 +28931,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3745796543703246762, guid: 2ebe08abd26609a4597c4704d7cbfec3,
+        type: 3}
+      propertyPath: healthPerTick
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 5846296565323083619, guid: 2ebe08abd26609a4597c4704d7cbfec3,
         type: 3}
       propertyPath: m_RootOrder
