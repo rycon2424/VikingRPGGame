@@ -10,8 +10,8 @@ public class PlayerIngameUI : MonoBehaviour
     [Space]
     public float staminaIncrease = 1.2f;
     [Space]
-    public Slider healthSlider;
-    public Slider staminaSlider;
+    public Image healthSlider;
+    public Image staminaSlider;
 
     private PlayerBehaviour pb;
     private float originalStamina;
@@ -48,12 +48,12 @@ public class PlayerIngameUI : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        healthSlider.value = pb.health;
+        healthSlider.fillAmount = (pb.health / 100);
     }
 
     public void UpdateStaminaBar()
     {
-        staminaSlider.value = pb.stamina;
+        staminaSlider.fillAmount = (pb.stamina / 100);
     }
 
     public void ResetGain()
