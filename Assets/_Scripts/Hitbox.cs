@@ -82,11 +82,16 @@ public class Hitbox : MonoBehaviour
         return null;
     }
 
-    public void HurtAllTargets(int damage)
+    public bool HurtAllTargets(int damage)
     {
         foreach (Actor enemy in typeInTrigger)
         {
             enemy.TakeDamage(damage);
         }
+        if (typeInTrigger.Count > 0)
+        {
+            return true;
+        }
+        return false;
     }
 }

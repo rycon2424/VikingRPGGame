@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BloodPool
   m_EditorClassIdentifier: 
   poolName: Blood
-  amount: 4
+  amount: 40
   objects:
   - {fileID: 3804295730929252633, guid: 6351e61f96d807647b29ece9d69abdae, type: 3}
   - {fileID: 6986130538773365350, guid: a9feb268dd470f94cb796b0ba1c945a5, type: 3}

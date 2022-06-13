@@ -6,6 +6,12 @@ using Sirenix.OdinInspector;
 
 public class PlayerBehaviour : Actor
 {
+    [Header("Rage")]
+    public float rage;
+    public float rageGain = 20;
+    public bool raging;
+    public GameObject rageParticles;
+    [Space]
     State currentState;
     [ReadOnly] [SerializeField] string currentStateDebug;
 
@@ -96,6 +102,7 @@ public class PlayerBehaviour : Actor
         {
             anim.Play("Death");
             dead = true;
+            StopRage();
         }
         TakeDamageEvent.Invoke();
     }
@@ -377,7 +384,26 @@ public class PlayerBehaviour : Actor
 
     public void Z_DealDamage()
     {
-        hb.HurtAllTargets(damage);
+        if (hb.HurtAllTargets(damage))
+        {
+            GainRage();
+        }
+    }
+
+    void GainRage()
+    {
+        rage += rageGain;
+        if (rage > 99)
+        {
+            raging = true;
+            rageParticles.SetActive(true);
+        }
+    }
+
+    public void StopRage()
+    {
+        raging = false;
+        rageParticles.SetActive(false);
     }
 
 }

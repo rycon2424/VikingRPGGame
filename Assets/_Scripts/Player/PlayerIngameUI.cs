@@ -7,11 +7,13 @@ public class PlayerIngameUI : MonoBehaviour
 {
     public float healthPerTick = 0.03f;
     public float staminaPerTick = 0.75f;
+    public float rageDecreasePerTick = 0.5f;
     [Space]
     public float staminaIncrease = 1.2f;
     [Space]
     public Image healthSlider;
     public Image staminaSlider;
+    public Image rageSlider;
 
     private PlayerBehaviour pb;
     private float originalStamina;
@@ -25,6 +27,7 @@ public class PlayerIngameUI : MonoBehaviour
             yield return new WaitForEndOfFrame();
             pb.health += healthPerTick * Time.deltaTime;
             pb.stamina += staminaPerTick * Time.deltaTime;
+            pb.rage -= rageDecreasePerTick * Time.deltaTime;
 
             if (pb.health > 100)
             {
@@ -35,6 +38,21 @@ public class PlayerIngameUI : MonoBehaviour
                 pb.stamina = 100;
                 ResetGain();
             }
+            if (pb.rage > 100)
+            {
+                pb.rage = 100;
+            }
+            if (pb.rage < 0)
+            {
+                pb.rage = 0;
+            }
+            if (pb.raging)
+            {
+                if (pb.rage < 25)
+                {
+                    pb.StopRage();
+                }
+            }
 
             staminaPerTick *= staminaIncrease;
         }
@@ -44,6 +62,7 @@ public class PlayerIngameUI : MonoBehaviour
     {
         UpdateHealthBar();
         UpdateStaminaBar();
+        UpdateRageBar();
     }
 
     public void UpdateHealthBar()
@@ -54,6 +73,11 @@ public class PlayerIngameUI : MonoBehaviour
     public void UpdateStaminaBar()
     {
         staminaSlider.fillAmount = (pb.stamina / 100);
+    }
+
+    public void UpdateRageBar()
+    {
+        rageSlider.fillAmount = (pb.rage / 100);
     }
 
     public void ResetGain()
