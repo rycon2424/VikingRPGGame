@@ -331,6 +331,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 11382767}
   m_PrefabAsset: {fileID: 0}
+--- !u!96 &21936180 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 21936180, guid: 2ebe08abd26609a4597c4704d7cbfec3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3745796543740055674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &32150255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2537,7 +2543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &502881026
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -21643,6 +21649,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1358120357}
   m_PrefabAsset: {fileID: 0}
+--- !u!96 &1367130912 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 1367130912, guid: 2ebe08abd26609a4597c4704d7cbfec3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3745796543740055674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1372843179
 GameObject:
   m_ObjectHideFlags: 0
@@ -28974,6 +28986,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5852364039738231209, guid: 2ebe08abd26609a4597c4704d7cbfec3,
+        type: 3}
+      propertyPath: rageLineRenderers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852364039738231209, guid: 2ebe08abd26609a4597c4704d7cbfec3,
+        type: 3}
+      propertyPath: rageLineRenderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 1367130912}
+    - target: {fileID: 5852364039738231209, guid: 2ebe08abd26609a4597c4704d7cbfec3,
+        type: 3}
+      propertyPath: rageLineRenderers.Array.data[1]
+      value: 
+      objectReference: {fileID: 21936180}
     - target: {fileID: 5852364039738231211, guid: 2ebe08abd26609a4597c4704d7cbfec3,
         type: 3}
       propertyPath: m_Name

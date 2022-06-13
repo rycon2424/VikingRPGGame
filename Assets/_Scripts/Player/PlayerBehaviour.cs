@@ -11,6 +11,7 @@ public class PlayerBehaviour : Actor
     public float rageGain = 20;
     public bool raging;
     public GameObject rageParticles;
+    public TrailRenderer[] rageLineRenderers;
     [Space]
     State currentState;
     [ReadOnly] [SerializeField] string currentStateDebug;
@@ -84,6 +85,8 @@ public class PlayerBehaviour : Actor
 
     void Update()
     {
+        if (dead) return;
+
         ccGrounded = cc.isGrounded;
         currentStateDebug = currentState.GetType().ToString();
         currentState.StateUpdate(this);
@@ -393,10 +396,21 @@ public class PlayerBehaviour : Actor
     void GainRage()
     {
         rage += rageGain;
-        if (rage > 99)
+        if (rage > 95)
         {
-            raging = true;
-            rageParticles.SetActive(true);
+            StartRage();
+        }
+    }
+
+    public void StartRage()
+    {
+        raging = true;
+        rageParticles.SetActive(true);
+        anim.speed = 1.25f;
+        Color32 rageColor = new Color32(255, 0, 0, 128);
+        foreach (var r in rageLineRenderers)
+        {
+            r.startColor = rageColor;
         }
     }
 
@@ -404,6 +418,12 @@ public class PlayerBehaviour : Actor
     {
         raging = false;
         rageParticles.SetActive(false);
+        anim.speed = 1;
+        Color32 neutralColor = new Color32(255, 255, 255, 128);
+        foreach (var r in rageLineRenderers)
+        {
+            r.startColor = neutralColor;
+        }
     }
 
 }

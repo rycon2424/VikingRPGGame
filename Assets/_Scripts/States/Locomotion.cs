@@ -98,16 +98,17 @@ public class Locomotion : State
         else
         {
             pb.anim.SetBool("Walking", false);
-        }
-        //Sprinting
-        if (Input.GetKey(pb.pc.sprint))
-        {
-            pb.anim.SetBool("Sprinting", true);
-        }
-        else
-        {
             pb.anim.SetBool("Sprinting", false);
         }
+        //Sprinting
+        if (Input.GetKeyDown(pb.pc.sprint))
+        {
+            pb.anim.SetBool("Sprinting", !pb.anim.GetBool("Sprinting"));
+        }
+        //else
+        //{
+        //    pb.anim.SetBool("Sprinting", false);
+        //}
         //Jump
         if (Input.GetKeyDown(pb.pc.jump))
         {

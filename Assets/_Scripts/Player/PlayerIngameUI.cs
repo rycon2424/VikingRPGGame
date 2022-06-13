@@ -25,9 +25,18 @@ public class PlayerIngameUI : MonoBehaviour
         while (pb.dead == false)
         {
             yield return new WaitForEndOfFrame();
-            pb.health += healthPerTick * Time.deltaTime;
+            if (pb.raging)
+            {
+                pb.health += (healthPerTick * Time.deltaTime) * 3;
+                pb.rage -= rageDecreasePerTick * Time.deltaTime * 3;
+            }
+            else
+            {
+                pb.health += healthPerTick * Time.deltaTime;
+                pb.rage -= rageDecreasePerTick * Time.deltaTime;
+            }
+
             pb.stamina += staminaPerTick * Time.deltaTime;
-            pb.rage -= rageDecreasePerTick * Time.deltaTime;
 
             if (pb.health > 100)
             {
@@ -48,7 +57,7 @@ public class PlayerIngameUI : MonoBehaviour
             }
             if (pb.raging)
             {
-                if (pb.rage < 25)
+                if (pb.rage < 50)
                 {
                     pb.StopRage();
                 }
