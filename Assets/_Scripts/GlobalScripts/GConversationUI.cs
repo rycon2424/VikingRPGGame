@@ -91,7 +91,7 @@ public class GConversationUI : MonoBehaviour
         for (int i = 0; i < option.GetChoices().Length; i++)
         {
             choices[i].gameObject.SetActive(true);
-            choices[i].GetComponentInChildren<TMP_Text>().text = (i + 1) + " " + option.GetChoices()[i].playerSentence;
+            choices[i].GetComponentInChildren<TMP_Text>().text = option.GetChoices()[i].playerSentence;
         }
     }
 
