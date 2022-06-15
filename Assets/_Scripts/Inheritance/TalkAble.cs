@@ -22,9 +22,12 @@ public class TalkAble : MonoBehaviour
         {
             if (player)
             {
-                if (Input.GetKeyDown(player.pc.grab))
+                if (playerInRange)
                 {
-                    Talk();
+                    if (Input.GetKeyDown(player.pc.grab))
+                    {
+                        Talk();
+                    }
                 }
             }
         }
@@ -56,7 +59,6 @@ public class TalkAble : MonoBehaviour
             if (other.GetComponent<PlayerBehaviour>())
             {
                 playerInRange = false;
-                player = null;
                 talkIndicator.SetActive(false);
             }
         }

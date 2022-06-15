@@ -15,8 +15,8 @@ MonoBehaviour:
   soundAssets:
   - terrainTextureOrder: 00000000
     tag: Dirt
-    maxVolume: 0.5
-    minVolume: 0.2
+    maxVolume: 0.2
+    minVolume: 0.05
     audioClips:
     - {fileID: 8300000, guid: f53fe02f37d61497fada69c4d094174f, type: 3}
     - {fileID: 8300000, guid: 5cc85d8c6364d4ac086f1133081c50da, type: 3}
@@ -49,8 +49,8 @@ MonoBehaviour:
     - {fileID: 8300000, guid: d19bd346b1ef549919293eb5045e8ee8, type: 3}
   - terrainTextureOrder: 0100000002000000
     tag: Leaves
-    maxVolume: 0.5
-    minVolume: 0.2
+    maxVolume: 0.2
+    minVolume: 0.05
     audioClips:
     - {fileID: 8300000, guid: c018e46ba7bb24dae8f5c4516080a884, type: 3}
     - {fileID: 8300000, guid: 36e23a8ca7ff2449ebf23179190a3fbc, type: 3}
@@ -84,8 +84,8 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 13533d29d85144440ad68caa2532b8d6, type: 3}
   - terrainTextureOrder: 03000000040000000500000006000000
     tag: Stone
-    maxVolume: 0.5
-    minVolume: 0.2
+    maxVolume: 0.2
+    minVolume: 0.05
     audioClips:
     - {fileID: 8300000, guid: 63d937c8921ce45c6b05782569443e84, type: 3}
     - {fileID: 8300000, guid: 196ed1f402cc2440dbdb24b48e7d81dc, type: 3}
