@@ -124,7 +124,7 @@ public class Npc : Actor
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        if (dead)
+        if (dead || invincible)
             return;
         health -= damage;
         if (health < 1)
