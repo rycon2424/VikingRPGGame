@@ -50,9 +50,12 @@ public class IKFoot : MonoBehaviour
     {
         if (enableFeetIK == false) { return; }
         if (anim == false) { return; }
-        if (playerState.stateMachine.IsInState("Locomotion") == false || playerState.Grounded() == false)
+        if (playerState != null)
         {
-            return;
+            if (playerState.stateMachine.IsInState("Locomotion") == false || playerState.Grounded() == false)
+            {
+                return;
+            }
         }
 
         //MovePelvisHeight();

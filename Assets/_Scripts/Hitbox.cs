@@ -84,9 +84,19 @@ public class Hitbox : MonoBehaviour
 
     public bool HurtAllTargets(int damage)
     {
+        List<Actor> deadActors = new List<Actor>();
+
         foreach (Actor enemy in typeInTrigger)
         {
+            if (enemy.dead)
+            {
+                deadActors.Add(enemy);
+            }
             enemy.TakeDamage(damage);
+        }
+        foreach (Actor enemy in deadActors)
+        {
+            typeInTrigger.Remove(enemy);
         }
         if (typeInTrigger.Count > 0)
         {
